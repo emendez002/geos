@@ -9,7 +9,7 @@ const categoryData = [
   { id: 6, name: 'Servicios por Demanda', icon: '⏳', count: 3 },
 ];
 
-const Categories = () => {
+const Categories = ({ onSelectCategory }) => {
   return (
     <section id="categorias" className="categories">
       <div className="container">
@@ -20,7 +20,11 @@ const Categories = () => {
         
         <div className="categories-grid">
           {categoryData.map(cat => (
-            <div key={cat.id} className="category-card glass-panel">
+            <div 
+              key={cat.id} 
+              className="category-card glass-panel"
+              onClick={() => onSelectCategory(cat)}
+            >
               <div className="cat-icon">{cat.icon}</div>
               <h3>{cat.name}</h3>
               <p className="cat-count">{cat.count} items</p>
