@@ -1,7 +1,7 @@
 /**
  * Utilidad para cargar y guardar la configuración del CMS (Orden y Visibilidad).
  */
-const CONFIG_SHEET_URL = "https://docs.google.com/spreadsheets/d/1IVKXZkcwx48I3_bdafGlCyn5Qgz_94v4oj0Ajvtd0eQ/gviz/tq?tqx=out:csv";
+const CONFIG_SHEET_URL = "https://docs.google.com/spreadsheets/d/1kpzwQWIJQ00C0eTApVJoqetrB-k_tWjoafYDArtNeDs/gviz/tq?tqx=out:csv";
 const SAVE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScbvymPTGn18Ycvi4vyegSGgrkpAz98zmEIMpTt-Q4f4Y2acg/formResponse";
 const CONFIG_ENTRY_ID = "entry.1814822638";
 
