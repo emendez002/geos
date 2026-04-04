@@ -1,6 +1,6 @@
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ onOpenLogin }) => {
   return (
     <footer id="contact" className="footer">
       <div className="container">
@@ -28,6 +28,9 @@ const Footer = () => {
         </div>
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Geos Marketplace. Desarrollado para GeoSolutions Consulting.</p>
+          <div className="footer-admin-link">
+             <button onClick={onOpenLogin} className="cms-btn-link">Acceso CMS</button>
+          </div>
         </div>
       </div>
     </footer>

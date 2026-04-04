@@ -1,0 +1,66 @@
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-modal-content {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  position: relative;
+  text-align: center;
+}
+
+.login-modal-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-modal-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.login-modal-content .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.login-modal-content .close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.login-modal-content .close-btn:hover {
+  color: var(--primary);
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 77, 77, 0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.full-width {
+  width: 100%;
+}
