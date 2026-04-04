@@ -87,23 +87,59 @@ const QuoteForm = ({ onClose }) => {
                   <span>Económico: Genérico ($15/k)</span>
                 </label>
                 <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Económico: Polymaker ($30/k)" />
+                  <span>Económico: Polymaker ($30/k)</span>
+                </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Económico: Prusament ($45/k)" />
+                  <span>Económico: Prusament ($45/k)</span>
+                </label>
+                <label className="radio-option">
                   <input type="radio" name="entry.342450411" value="Premium: Genérico ($25/k)" />
                   <span>Premium: Genérico ($25/k)</span>
+                </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Premium: Polymaker ($40/k)" />
+                  <span>Premium: Polymaker ($40/k)</span>
+                </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Premium: Prusament ($65/k)" />
+                  <span>Premium: Prusament ($65/k)</span>
                 </label>
                 <label className="radio-option">
                   <input type="radio" name="entry.342450411" value="Resina: Siraya ($70/k)" />
                   <span>Resina: Siraya ($70/k)</span>
                 </label>
                 <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Resina: Prusa ($80/k)" />
+                  <span>Resina: Prusa ($80/k)</span>
+                </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Resina Dental ($85/k)" />
+                  <span>Resina Dental ($85/k)</span>
+                </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Resina Joyería (Castable) ($60/k)" />
+                  <span>Resina Joyería (Castable) ($60/k)</span>
+                </label>
+                <label className="radio-option">
                   <input type="radio" name="entry.342450411" value="Fibra Carbono: Genérico ($40/k)" />
                   <span>Fibra Carbono: Genérico ($40/k)</span>
+                </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Fibra Carbono: Prusament PC Blend ($75/k)" />
+                  <span>Fibra Carbono: Prusament PC Blend ($75/k)</span>
                 </label>
                 <label className="radio-option">
                   <input type="radio" name="entry.342450411" value="Flexible: Genérico ($35/k)" />
                   <span>Flexible: Genérico ($35/k)</span>
                 </label>
+                <label className="radio-option">
+                  <input type="radio" name="entry.342450411" value="Flexible: Resina Prusa ($80/k)" />
+                  <span>Flexible: Resina Prusa ($80/k)</span>
+                </label>
               </div>
-              <p className="field-hint">Opciones abreviadas por diseño. Consulta disponibilidad premium en observaciones.</p>
+              <p className="field-hint">Opciones completas del Formulario de Geos Lab.</p>
             </div>
 
             <div className="form-group">
@@ -111,19 +147,19 @@ const QuoteForm = ({ onClose }) => {
               <div className="checkbox-grid">
                 <label className="checkbox-option">
                   <input type="checkbox" name="entry.940878282" value="Atención Prioritaria (Inmediatez y urgencia)" />
-                  <span>Atención Prioritaria</span>
+                  <span>Atención Prioritaria (Inmediatez y urgencia)</span>
                 </label>
                 <label className="checkbox-option">
                   <input type="checkbox" name="entry.940878282" value="Post-procesado (Acabado final)" />
-                  <span>Post-procesado</span>
+                  <span>Post-procesado (Acabado final)</span>
                 </label>
                 <label className="checkbox-option">
                   <input type="checkbox" name="entry.940878282" value="Modelado simple de la pieza" />
-                  <span>Modelado simple</span>
+                  <span>Modelado simple de la pieza</span>
                 </label>
                 <label className="checkbox-option">
                   <input type="checkbox" name="entry.940878282" value="Sin post-procesado (Costo menor)" />
-                  <span>Sin post-procesado</span>
+                  <span>Sin post-procesado (Costo menor)</span>
                 </label>
               </div>
             </div>
@@ -140,8 +176,8 @@ const QuoteForm = ({ onClose }) => {
 
             <div className="form-acceptance">
               <label className="checkbox-option">
-                <input type="checkbox" name="entry.791947649" value="Acepto los términos y condiciones" required />
-                <span>Acepto que mis datos sean procesados para la cotización técnica.</span>
+                <input type="checkbox" name="entry.791947649" value="Entiendo y estoy de acuerdo con estos términos" required />
+                <span>Entiendo y estoy de acuerdo con estos términos.</span>
               </label>
             </div>
 
