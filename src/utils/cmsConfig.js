@@ -10,19 +10,27 @@ export const fetchCMSConfig = async () => {
     const response = await fetch(`${CONFIG_SHEET_URL}&t=${Date.now()}`); // Cache busting
     const text = await response.text();
     
-    // Parsear el CSV y obtener el valor JSON de la última fila (columna de configuración)
     const rows = text.split('\n').filter(row => row.trim() !== '');
-    if (rows.length <= 1) return { pages: {} }; // Solo cabecera o vacío
+    if (rows.length <= 1) return { pages: {} };
 
     const lastRow = rows[rows.length - 1];
     
-    // Extraer el JSON (normalmente es la última columna del Spreadsheet)
-    const cells = lastRow.split('","').map(cell => cell.replace(/"/g, '').trim());
-    const jsonStr = cells.find(cell => cell.startsWith('{') && cell.endsWith('}'));
+    // Robust extraction: Find the first '{' and the last '}'
+    const startIdx = lastRow.indexOf('{');
+    const endIdx = lastRow.lastIndexOf('}');
     
-    return jsonStr ? JSON.parse(jsonStr) : { pages: {} };
+    if (startIdx !== -1 && endIdx !== -1) {
+      let jsonStr = lastRow.substring(startIdx, endIdx + 1);
+      
+      // Google Sheets CSV escapes double quotes as ""
+      jsonStr = jsonStr.replace(/""/g, '"');
+      
+      return JSON.parse(jsonStr);
+    }
+    
+    return { pages: {} };
   } catch (error) {
-    console.warn("No se pudo cargar la configuración del CMS:", error);
+    console.warn("No se pudo parsear la configuración del CMS. Formato CSV inválido o vacío.", error);
     return { pages: {} };
   }
 };
