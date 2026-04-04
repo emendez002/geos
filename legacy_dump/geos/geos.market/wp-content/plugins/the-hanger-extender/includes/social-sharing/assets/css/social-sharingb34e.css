@@ -1,0 +1,94 @@
+.single-product .product .getbowtied-single-product-share-wrapper,
+#getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper {
+  font-size: 0.75rem;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0  auto 2rem;
+  -webkit-box-ordinal-group: 10;
+  -ms-flex-order: 9;
+  order: 9; }
+  @media print, screen and (max-width: 640px) {
+    .single-product .product .getbowtied-single-product-share-wrapper,
+    #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper {
+      margin-left: -20px;
+      margin-right: -20px;
+      margin-bottom: 1rem; } }
+  @media print, screen and (min-width: 640px) and (max-width: 1024px) {
+    .single-product .product .getbowtied-single-product-share-wrapper,
+    #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper {
+      margin-left: -24px;
+      margin-right: -24px;
+      margin-bottom: 1rem; } }
+  @media print, screen and (min-width: 1024px) {
+    .single-product .product .getbowtied-single-product-share-wrapper,
+    #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper {
+      float: right;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin: 0  0 3rem;
+      margin-top: -2px; } }
+  .single-product .product .getbowtied-single-product-share-wrapper .getbowtied-single-product-share,
+  #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper .getbowtied-single-product-share {
+    margin-right: 1rem;
+    display: none; }
+    @media print, screen and (min-width: 1024px) {
+      .single-product .product .getbowtied-single-product-share-wrapper .getbowtied-single-product-share,
+      #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper .getbowtied-single-product-share {
+        display: inline-block; } }
+  @media print, screen and (max-width: 1023px) {
+    .single-product .product .getbowtied-single-product-share-wrapper a,
+    #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper a {
+      width: calc(100% / 3);
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+      border-right: 1px solid;
+      padding: 1.125rem 0 1rem 0; }
+      .single-product .product .getbowtied-single-product-share-wrapper a:last-child,
+      #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper a:last-child {
+        border-right: none; } }
+  .single-product .product .getbowtied-single-product-share-wrapper a:last-child svg,
+  #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper a:last-child svg {
+    margin-right: 0; }
+  .single-product .product .getbowtied-single-product-share-wrapper a svg,
+  #getbowtied_woocommerce_quickview .product .getbowtied-single-product-share-wrapper a svg {
+    margin-right: 0.75rem;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease; }
+
+@media print, screen and (min-width: 1024px) {
+  .rtl .single-product .product .getbowtied-single-product-share-wrapper {
+    float: left; } }
+
+.rtl .single-product .product .getbowtied-single-product-share-wrapper a svg {
+  margin-left: 0.75rem;
+  margin-right: 0; }
+
+.rtl .single-product .product .getbowtied-single-product-share-wrapper a:last-child svg {
+  margin-left: 0;
+  margin-right: 0; }
+
+.rtl #getbowtied_woocommerce_quickview .getbowtied_qv_content .site-content .product .getbowtied-single-product-share-wrapper {
+  float: left; }
+  .rtl #getbowtied_woocommerce_quickview .getbowtied_qv_content .site-content .product .getbowtied-single-product-share-wrapper .getbowtied-single-product-share {
+    margin-left: 1rem;
+    margin-right: 0; }
+  .rtl #getbowtied_woocommerce_quickview .getbowtied_qv_content .site-content .product .getbowtied-single-product-share-wrapper a svg {
+    margin-left: 0.75rem;
+    margin-right: 0; }
+  .rtl #getbowtied_woocommerce_quickview .getbowtied_qv_content .site-content .product .getbowtied-single-product-share-wrapper a:last-child svg {
+    margin-left: 0; }
+
+.header-sticky-product .header-sticky-blog-facebook svg,
+.header-sticky-product .header-sticky-blog-twitter svg,
+.header-sticky-blog .header-sticky-blog-facebook svg,
+.header-sticky-blog .header-sticky-blog-twitter svg {
+  -webkit-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease; }

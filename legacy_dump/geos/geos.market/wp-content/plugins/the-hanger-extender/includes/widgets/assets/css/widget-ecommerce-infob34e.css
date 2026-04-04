@@ -1,0 +1,19 @@
+.widget_theme_ecommerce_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .widget_theme_ecommerce_info .ecommerce-info-widget-txt-wrapper .ecommerce-info-widget-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .widget_theme_ecommerce_info .ecommerce-info-widget-txt-wrapper .ecommerce-info-widget-title .ecommerce-info-widget-icon {
+      font-size: 24px;
+      margin-right: 16px;
+      line-height: 1; }
+    .widget_theme_ecommerce_info .ecommerce-info-widget-txt-wrapper .ecommerce-info-widget-title .widget-title {
+      margin-bottom: 4px; }
+  .widget_theme_ecommerce_info .ecommerce-info-widget-txt-wrapper .ecommerce-info-widget-subtitle {
+    padding-left: 2.5rem; }

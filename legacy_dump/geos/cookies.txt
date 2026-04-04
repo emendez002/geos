@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+geos.market	TRUE	/	FALSE	1999999999	wp_woocommerce_session_f2e464b4472452aa197334c74d410e47	t_f1a3a931e2cb3433a2d0383bf2735c%7C%7C1775452870%7C%7C1775449270%7C%7C3384c95342057a0d90ee7a03d198ae32
+

@@ -1,0 +1,101 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg-darker);
+  transition: all var(--transition-normal);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-text-main);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg-card-hover);
+  border-color: var(--color-primary);
+}
+
+.hero-assets {
+  position: absolute;
+  right: -10%;
+  top: 20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  z-index: 1;
+}
+
+.hero-orbit {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  animation: spin 30s linear infinite;
+}
+
+.orbit-item {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--color-primary);
+}
+
+.i1 { top: 10%; left: 10%; }
+.i2 { bottom: 20%; right: 5%; background: var(--color-secondary); box-shadow: 0 0 15px var(--color-secondary); }
+.i3 { bottom: 10%; left: 30%; width: 10px; height: 10px; }
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .hero-assets {
+    opacity: 0.1;
+    right: -30%;
+  }
+}
