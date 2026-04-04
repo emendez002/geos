@@ -10,19 +10,27 @@ import QuoteForm from './components/QuoteForm';
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showQuote, setShowQuote] = useState(false);
+  const [quoteMetadata, setQuoteMetadata] = useState(null);
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
     setShowQuote(false);
+    setQuoteMetadata(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBack = () => {
     setSelectedCategory(null);
     setShowQuote(false);
+    setQuoteMetadata(null);
   };
 
-  const handleOpenQuote = () => {
+  const handleOpenQuote = (product = null, category = null) => {
+    setQuoteMetadata(product ? { 
+      productName: product.name, 
+      categoryName: category?.name || product.category,
+      url: window.location.href 
+    } : null);
     setShowQuote(true);
     setSelectedCategory(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -30,10 +38,13 @@ function App() {
 
   return (
     <>
-      <Navbar onOpenQuote={handleOpenQuote} onHome={() => { setSelectedCategory(null); setShowQuote(false); }} />
+      <Navbar onOpenQuote={() => handleOpenQuote()} onHome={() => { setSelectedCategory(null); setShowQuote(false); }} />
       <main>
         {showQuote ? (
-          <QuoteForm onClose={() => setShowQuote(false)} />
+          <QuoteForm 
+            onClose={() => setShowQuote(false)} 
+            metadata={quoteMetadata} 
+          />
         ) : !selectedCategory ? (
           <>
             <Hero />

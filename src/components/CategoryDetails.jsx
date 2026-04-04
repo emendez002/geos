@@ -34,7 +34,7 @@ const CategoryDetails = ({ category, onBack, onOpenQuote }) => {
                 <p>{product.description}</p>
                 <div className="product-actions">
                   <span className="product-price">Consultar</span>
-                  <button onClick={onOpenQuote} className="btn-primary-small">Cotizar Proyecto</button>
+                  <button onClick={() => onOpenQuote(product, category)} className="btn-primary-small">Cotizar Proyecto</button>
                 </div>
               </div>
             </div>
