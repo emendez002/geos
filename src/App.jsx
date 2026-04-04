@@ -25,6 +25,14 @@ function App() {
     loadConfig();
   }, []);
 
+  useEffect(() => {
+    if (userRole) {
+      document.body.classList.add('admin-active');
+    } else {
+      document.body.classList.remove('admin-active');
+    }
+  }, [userRole]);
+
   const handleLogin = (role) => {
     setUserRole(role);
     localStorage.setItem('geos_user_role', role);

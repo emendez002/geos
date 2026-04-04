@@ -112,3 +112,124 @@ button {
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
+
+/* CMS ADMIN STYLES */
+.admin-status-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 113, 206, 0.95);
+  color: white;
+  padding: 0.8rem 2rem;
+  z-index: 10001;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.admin-info .badge {
+  background: #ffffff;
+  color: #0071CE;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-save-cms {
+  background: #00ADB5;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 0 15px rgba(0, 173, 181, 0.3);
+}
+
+.btn-save-cms:hover:not(:disabled) {
+  background: #00c9d2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 173, 181, 0.5);
+}
+
+.btn-save-cms:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-logout-small {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-logout-small:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* CMS CARD CONTROLS */
+.cms-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.4rem;
+  border-radius: 8px;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cms-controls button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.cms-controls button:hover {
+  background: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.cms-hidden {
+  opacity: 0.5;
+  filter: grayscale(0.8) blur(1px);
+}
+
+.cms-hidden:hover {
+  opacity: 0.8;
+  filter: none;
+}
+
+/* Page spacing for admin bar */
+body.admin-active {
+  padding-top: 50px;
+}
