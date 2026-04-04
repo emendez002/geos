@@ -1,7 +1,7 @@
 import './CategoryDetails.css';
 import productsData from '../data/products.json';
 
-const CategoryDetails = ({ category, onBack }) => {
+const CategoryDetails = ({ category, onBack, onOpenQuote }) => {
   const products = productsData[category.name] || [];
 
   return (
@@ -33,8 +33,8 @@ const CategoryDetails = ({ category, onBack }) => {
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <div className="product-actions">
-                  <span className="product-price">Cotizar</span>
-                  <a href="https://form.jotform.com/231100629098856" target="_blank" rel="noreferrer" className="btn-primary-small">Comprar</a>
+                  <span className="product-price">Consultar</span>
+                  <button onClick={onOpenQuote} className="btn-primary-small">Cotizar Proyecto</button>
                 </div>
               </div>
             </div>

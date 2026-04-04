@@ -59,6 +59,21 @@
       "name": "Mini Prisma TPS MINI 101",
       "image": "https://geos.market/wp-content/uploads/2022/08/AC-MINI-PRISMA-TPS-MINI-101-330x413.jpg",
       "description": "Tecnología de última generación para tus proyectos."
+    },
+    {
+      "name": "SOUTH Insight V1 GNSS",
+      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154445353.png",
+      "description": "Receptor GNSS de alta precisión con tecnología IMU de última generación."
+    },
+    {
+      "name": "SOUTH Galaxy G7",
+      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154G2F9.png",
+      "description": "Sistema GNSS ultra-compacto y ligero para mediciones eficientes."
+    },
+    {
+      "name": "SOUTH INNO7",
+      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154R1F7.png",
+      "description": "Innovación en posicionamiento con radio interna de largo alcance."
     }
   ],
   "Hidrología": [
@@ -101,6 +116,16 @@
       "name": "WAM-V 8 Ultraportátil",
       "image": "https://geos.market/wp-content/uploads/2024/07/wam-v8-330x413.jpg",
       "description": "Tecnología de última generación para tus proyectos."
+    },
+    {
+      "name": "SOUTH NAVI 70 USV",
+      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154S3O1.png",
+      "description": "Vehículo autónomo de superficie para levantamientos hidrográficos inteligentes."
+    },
+    {
+      "name": "SOUTH SDE-28S Echo Sounder",
+      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154P4948.png",
+      "description": "Ecosonda digital con compensadora de oleaje y procesamiento en tiempo real."
     }
   ],
   "Equipos Rugged": [

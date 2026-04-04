@@ -1,19 +1,19 @@
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onOpenQuote, onHome }) => {
   return (
     <nav className="navbar glass-panel">
       <div className="container nav-content">
-        <div className="nav-brand">
+        <div className="nav-brand" onClick={onHome} style={{ cursor: 'pointer' }}>
           <span className="logo-text text-gradient">Geos</span> Marketplace
         </div>
         <ul className="nav-links">
-          <li><a href="#home">Inicio</a></li>
-          <li><a href="#categorias">Tienda</a></li>
-          <li><a href="https://form.jotform.com/231100629098856" target="_blank" rel="noreferrer">Impresión 3D</a></li>
+          <li><a href="#home" onClick={(e) => { e.preventDefault(); onHome(); }}>Inicio</a></li>
+          <li><a href="#categorias" onClick={(e) => { e.preventDefault(); onHome(); }}>Tienda</a></li>
+          <li><a href="#quote" onClick={(e) => { e.preventDefault(); onOpenQuote(); }}>Inspiración 3D</a></li>
         </ul>
         <div className="nav-actions">
-          <a href="#contact" className="btn-quote">Cotizar</a>
+          <button onClick={onOpenQuote} className="btn-quote">Cotizar</button>
         </div>
       </div>
     </nav>
