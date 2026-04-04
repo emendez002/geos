@@ -38,13 +38,36 @@ const QuoteForm = ({ onClose }) => {
         onSubmit={handleSubmit}
         className="premium-form"
       >
+        <div className="form-group-row">
+          <div className="form-group">
+            <label htmlFor="project">Nombre del Proyecto / Empresa</label>
+            <input 
+              type="text" 
+              id="project" 
+              name="entry.1447506012" 
+              placeholder="Ej. Prototipo Carcasa Industrial" 
+              required 
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="entry.800552490" 
+              placeholder="nombre@empresa.com" 
+              required 
+            />
+          </div>
+        </div>
+
         <div className="form-group">
-          <label htmlFor="project">Nombre del Proyecto / Empresa</label>
+          <label htmlFor="phone">Teléfono de Contacto</label>
           <input 
-            type="text" 
-            id="project" 
-            name="entry.1447506012" 
-            placeholder="Ej. Prototipo Carcasa Industrial" 
+            type="tel" 
+            id="phone" 
+            name="entry.2006614892" 
+            placeholder="Ej. +506 8888 8888" 
             required 
           />
         </div>
