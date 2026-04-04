@@ -7,16 +7,15 @@ const QuoteForm = ({ onClose, metadata }) => {
   // URL for 3D Printing Form (Existing)
   const formUrl3D = "https://docs.google.com/forms/d/e/1FAIpQLSfRxT61Ko6Y1Z1B5PqmPZ0d9KsA91wkg2DHayuTGOAROGxR-g/formResponse";
   
-  // URL for General Form (IMPORTANT: User must replace this URL)
-  const formUrlGeneral = "https://docs.google.com/forms/d/e/NUEVO_FORM_ID/formResponse";
+  // URL for General Form (Definitive)
+  const formUrlGeneral = "https://docs.google.com/forms/d/e/1FAIpQLSfQ2D6wFxGCQ4m5HFMEDoUZ-_Dndr23kocfwwNEmrbhQ0lz2g/formResponse";
 
   const is3DMode = !metadata || metadata.categoryName === "Servicios de Impresión 3D";
 
   const handleSubmit = (e) => {
     // If General Mode, inject traceability into the message field
     if (!is3DMode) {
-      // IMPORTANT: User must replace these placeholder entry IDs with real ones from the new form
-      const MESSAGE_ENTRY_ID = "entry.ID_MENSAJE"; 
+      const MESSAGE_ENTRY_ID = "entry.796469793"; 
       const messageInput = e.target.querySelector(`[name="${MESSAGE_ENTRY_ID}"]`);
       if (messageInput) {
         const traceability = `\n\n--- [Trazabilidad Interna] ---\nOrigen de Página: ${metadata.categoryName}\nElemento/Botón: ${metadata.productName}\nURL: ${metadata.url}`;
@@ -67,7 +66,7 @@ const QuoteForm = ({ onClose, metadata }) => {
                 <input 
                   type="text" 
                   id="project" 
-                  name={is3DMode ? "entry.1447506012" : "entry.ID_NOMBRE"} 
+                  name={is3DMode ? "entry.1447506012" : "entry.656216128"} 
                   placeholder={is3DMode ? "Ej. Prototipo Carcasa Industrial" : "Tu nombre o empresa"} 
                   required 
                 />
@@ -77,7 +76,7 @@ const QuoteForm = ({ onClose, metadata }) => {
                 <input 
                   type="email" 
                   id="email" 
-                  name={is3DMode ? "entry.800552490" : "entry.ID_EMAIL"} 
+                  name={is3DMode ? "entry.800552490" : "entry.1170429955"} 
                   placeholder="nombre@empresa.com" 
                   required 
                 />
@@ -89,7 +88,7 @@ const QuoteForm = ({ onClose, metadata }) => {
               <input 
                 type="tel" 
                 id="phone" 
-                name={is3DMode ? "entry.2006614892" : "entry.ID_TELEFONO"} 
+                name={is3DMode ? "entry.2006614892" : "entry.741263609"} 
                 placeholder="Ej. +506 8888 8888" 
                 required 
               />
@@ -188,7 +187,7 @@ const QuoteForm = ({ onClose, metadata }) => {
                 <label htmlFor="message">Mensaje / Requerimiento</label>
                 <textarea 
                   id="message" 
-                  name="entry.ID_MENSAJE" 
+                  name="entry.796469793" 
                   placeholder={`Hola, me interesa obtener más información sobre ${metadata.productName}...`}
                   rows="6"
                   required
@@ -201,8 +200,8 @@ const QuoteForm = ({ onClose, metadata }) => {
               <label className="checkbox-option">
                 <input 
                   type="checkbox" 
-                  name={is3DMode ? "entry.791947649" : "entry.ID_ACEPTACION"} 
-                  value={is3DMode ? "Entiendo y estoy de acuerdo con estos términos" : "Acepto los términos"} 
+                  name={is3DMode ? "entry.791947649" : "entry.1610102885"} 
+                  value={is3DMode ? "Entiendo y estoy de acuerdo con estos términos" : "Entiendo y estoy de acuerdo con estos términos."} 
                   required 
                 />
                 <span>Entiendo y estoy de acuerdo con estos términos.</span>
