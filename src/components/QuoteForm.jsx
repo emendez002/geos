@@ -27,8 +27,8 @@ const QuoteForm = ({ onClose }) => {
   return (
     <div className="quote-form-container">
       <div className="form-header">
-        <h1>Cotizador de Soluciones Geoespaciales</h1>
-        <p>Completa el formulario para recibir una propuesta técnica personalizada.</p>
+        <h1>Cotizador de Impresión 3D - Geos Lab</h1>
+        <p>Completa el formulario para recibir una propuesta técnica de manufactura aditiva.</p>
       </div>
 
       <form 
@@ -44,69 +44,78 @@ const QuoteForm = ({ onClose }) => {
             type="text" 
             id="project" 
             name="entry.1447506012" 
-            placeholder="Ej. Levantamiento Hidrográfico Puerto Limón" 
+            placeholder="Ej. Prototipo Carcasa Industrial" 
             required 
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="category">Categoría de Interés</label>
+          <label htmlFor="category">Categoría de Material</label>
           <select id="category" name="entry.1251348165" required>
             <option value="">Selecciona una categoría...</option>
-            <option value="Topografía y Geodesia">Topografía y Geodesia</option>
-            <option value="Hidrografía y Oceanografía">Hidrografía y Oceanografía</option>
-            <option value="Fotogrametría y Drones">Fotogrametría y Drones</option>
-            <option value="Software y GIS">Software y GIS</option>
-            <option value="Servicios de Impresión 3D">Servicios de Impresión 3D</option>
+            <option value="Materiales Económicos (PLA, PETG, ASA)">Materiales Económicos (PLA, PETG, ASA)</option>
+            <option value="Materiales Premium (PC, Nylon, Resina Std)">Materiales Premium (PC, Nylon, Resina Std)</option>
+            <option value="Materiales Especiales (Fibra de Carbono, Dental, Joyería)">Materiales Especiales (Fibra de Carbono, Dental, Joyería)</option>
+            <option value="Materiales Flexibles">Materiales Flexibles</option>
+            <option value="Material propio (Traer filamento o resina)">Material propio (Traer filamento o resina)</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label>Especificación de Equipo / Calidad</label>
-          <div className="radio-group">
+          <label>Especificación de Material y Calidad</label>
+          <div className="radio-group scrollable-radio">
             <label className="radio-option">
-              <input type="radio" name="entry.342450411" value="Alta Precisión (Centimétrica)" required />
-              <span>Alta Precisión (Centimétrica)</span>
+              <input type="radio" name="entry.342450411" value="Económico: Genérico ($15/k)" required />
+              <span>Económico: Genérico ($15/k)</span>
             </label>
             <label className="radio-option">
-              <input type="radio" name="entry.342450411" value="Estándar / SIG" />
-              <span>Estándar / SIG</span>
+              <input type="radio" name="entry.342450411" value="Premium: Genérico ($25/k)" />
+              <span>Premium: Genérico ($25/k)</span>
             </label>
             <label className="radio-option">
-              <input type="radio" name="entry.342450411" value="Educativo / Entrada" />
-              <span>Educativo / Entrada</span>
+              <input type="radio" name="entry.342450411" value="Resina: Siraya ($70/k)" />
+              <span>Resina: Siraya ($70/k)</span>
+            </label>
+            <label className="radio-option">
+              <input type="radio" name="entry.342450411" value="Fibra Carbono: Genérico ($40/k)" />
+              <span>Fibra Carbono: Genérico ($40/k)</span>
+            </label>
+            <label className="radio-option">
+              <input type="radio" name="entry.342450411" value="Flexible: Genérico ($35/k)" />
+              <span>Flexible: Genérico ($35/k)</span>
             </label>
           </div>
+          <p className="field-hint">Opciones abreviadas por diseño. Consulta disponibilidad premium en observaciones.</p>
         </div>
 
         <div className="form-group">
           <label>Servicios y Preferencias Adicionales</label>
           <div className="checkbox-grid">
             <label className="checkbox-option">
-              <input type="checkbox" name="entry.940878282" value="Capacitación en Sitio" />
-              <span>Capacitación en Sitio</span>
+              <input type="checkbox" name="entry.940878282" value="Atención Prioritaria (Inmediatez y urgencia)" />
+              <span>Atención Prioritaria</span>
             </label>
             <label className="checkbox-option">
-              <input type="checkbox" name="entry.940878282" value="Soporte Técnico Premium" />
-              <span>Soporte Técnico Premium</span>
+              <input type="checkbox" name="entry.940878282" value="Post-procesado (Acabado final)" />
+              <span>Post-procesado</span>
             </label>
             <label className="checkbox-option">
-              <input type="checkbox" name="entry.940878282" value="Mantenimiento Preventivo" />
-              <span>Mantenimiento Preventivo</span>
+              <input type="checkbox" name="entry.940878282" value="Modelado simple de la pieza" />
+              <span>Modelado simple</span>
             </label>
             <label className="checkbox-option">
-              <input type="checkbox" name="entry.940878282" value="Alquiler con Opción a Compra" />
-              <span>Alquiler con Opción a Compra</span>
+              <input type="checkbox" name="entry.940878282" value="Sin post-procesado (Costo menor)" />
+              <span>Sin post-procesado</span>
             </label>
           </div>
         </div>
 
         <div className="form-group">
-          <label htmlFor="comments">Observaciones Detalladas</label>
+          <label htmlFor="comments">Observaciones Detalladas (Material Premium, Color, etc.)</label>
           <textarea 
             id="comments" 
             name="entry.1702742166" 
-            placeholder="Describe tus necesidades técnicas específicas..."
+            placeholder="Especifica el color deseado o si requieres una marca premium (Prusament, Polymaker)..."
             rows="4"
           ></textarea>
         </div>
