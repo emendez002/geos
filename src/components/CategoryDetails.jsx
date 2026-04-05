@@ -43,7 +43,10 @@ const SortableProductCard = ({ product, category, config, onOpenQuote, userRole,
     >
       <div className="product-image-placeholder">
         {product.image ? (
-          <img src={product.image} alt={product.name} />
+          <img 
+            src={product.image.startsWith('http') ? product.image : `${import.meta.env.BASE_URL}${product.image}`} 
+            alt={product.name} 
+          />
         ) : (
           <span className="placeholder-icon">{category.icon}</span>
         )}

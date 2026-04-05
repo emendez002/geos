@@ -16,6 +16,30 @@ function App() {
   const [cmsConfig, setCmsConfig] = useState(null);
   const [userRole, setUserRole] = useState(localStorage.getItem('geos_user_role') || null);
   const [showLogin, setShowLogin] = useState(false);
+  const [scrollTarget, setScrollTarget] = useState(null);
+
+  useEffect(() => {
+    // Robust scroll after view transition
+    if (!selectedCategory && !showQuote && scrollTarget) {
+      // Need a small frame delay to ensure DOM is ready
+      requestAnimationFrame(() => {
+        const el = document.getElementById(scrollTarget);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          setScrollTarget(null);
+        } else {
+          // Fallback if not found yet
+          setTimeout(() => {
+            const elRetry = document.getElementById(scrollTarget);
+            if (elRetry) {
+              elRetry.scrollIntoView({ behavior: 'smooth' });
+            }
+            setScrollTarget(null);
+          }, 100);
+        }
+      });
+    }
+  }, [selectedCategory, showQuote, scrollTarget]);
 
   useEffect(() => {
     const loadConfig = async () => {
@@ -54,14 +78,7 @@ function App() {
     setSelectedCategory(null);
     setShowQuote(false);
     setQuoteMetadata(null);
-    
-    // Permitir un breve momento para que se renderice la vista de inicio antes de desplazar
-    setTimeout(() => {
-      const element = document.getElementById('categorias');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 50);
+    setScrollTarget('categorias');
   };
 
   const handleOpenQuote = (product = null, category = null) => {
@@ -107,10 +124,7 @@ function App() {
         onScrollTo={(id) => {
           setSelectedCategory(null);
           setShowQuote(false);
-          setTimeout(() => {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }, 50);
+          setScrollTarget(id);
         }}
       />
       <main>

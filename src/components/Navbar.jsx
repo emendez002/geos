@@ -1,6 +1,6 @@
 import './Navbar.css';
 
-const Navbar = ({ onOpenQuote, onHome }) => {
+const Navbar = ({ onOpenQuote, onHome, onScrollTo }) => {
   return (
     <nav className="navbar glass-panel">
       <div className="container nav-content">

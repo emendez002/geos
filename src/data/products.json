@@ -2,12 +2,12 @@
   "Topográficos": [
     {
       "name": "GPS de Alta Resolución JASEC",
-      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154445353.png",
+      "image": "products/gps_jasec.png",
       "description": "Equipos de recolección de datos y mediciones de terreno para actualización de SIG (Sistemas de Información Geográfica)."
     },
     {
       "name": "SOUTH Insight V1 GNSS",
-      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154445353.png",
+      "image": "products/south_gnss_v1.png",
       "description": "Receptor GNSS de alta precisión con tecnología IMU de última generación."
     },
     {
@@ -17,9 +17,10 @@
     },
     {
       "name": "SOUTH Galaxy G7",
-      "image": "https://www.southinstrument.com/uploads/allimg/210519/1-210519154G2F9.png",
+      "image": "products/south_galaxy_g7.png",
       "description": "Sistema GNSS ultra-compacto y ligero para mediciones eficientes."
-    },
+    }
+,
     {
       "name": "Bastón y Dianas de Topografía",
       "image": "https://geos.market/wp-content/uploads/2022/08/AC-BASTON-DE-ALUMINO-PS4.6-330x413.png",
@@ -46,17 +47,17 @@
   "Ciberseguridad": [
     {
       "name": "WatchGuard EPDR",
-      "image": "/geos/products/watchguard_epdr.png",
+      "image": "products/watchguard_epdr.png",
       "description": "Solución integral de Endpoint Protection, Detection and Response con monitoreo MDR 24/7."
     },
     {
       "name": "Soluciones de Respaldo en la Nube",
-      "image": "/geos/products/cloud_backup.png",
+      "image": "products/cloud_backup.png",
       "description": "Sistemas de respaldo ilimitado para infraestructuras críticas y Microsoft 365 con cifrado avanzado."
     },
     {
       "name": "Detección y Respuesta Gestionada (MDR)",
-      "image": "/geos/products/mdr_service.png",
+      "image": "products/mdr_service.png",
       "description": "Servicio de vigilancia proactiva contra amenazas avanzadas y ataques de ransomware."
     }
   ],
