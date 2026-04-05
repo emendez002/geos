@@ -54,6 +54,14 @@ function App() {
     setSelectedCategory(null);
     setShowQuote(false);
     setQuoteMetadata(null);
+    
+    // Permitir un breve momento para que se renderice la vista de inicio antes de desplazar
+    setTimeout(() => {
+      const element = document.getElementById('categorias');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
   };
 
   const handleOpenQuote = (product = null, category = null) => {
