@@ -23,14 +23,20 @@ import imgRugged from '../assets/categories/rugged.png';
 import imgDrones from '../assets/categories/drones.png';
 import imgSoftware from '../assets/categories/software.png';
 import imgServicios from '../assets/categories/servicios.png';
+import imgCiberseguridad from '../assets/categories/ciberseguridad.png';
+import imgMaritimo from '../assets/categories/maritimo.png';
+import imgEspecializados from '../assets/categories/especializados.png';
 
 const categoryData = [
-  { id: 'cat_topograficos', name: 'Topográficos', icon: imgTopograficos, count: 34 },
-  { id: 'cat_hidrologia', name: 'Hidrología', icon: imgHidrologia, count: 8 },
-  { id: 'cat_rugged', name: 'Equipos Rugged', icon: imgRugged, count: 6 },
+  { id: 'cat_topograficos', name: 'Topográficos', icon: imgTopograficos, count: 18 },
+  { id: 'cat_hidrologia', name: 'Hidrología', icon: imgHidrologia, count: 6 },
+  { id: 'cat_ciberseguridad', name: 'Ciberseguridad', icon: imgCiberseguridad, count: 4 },
+  { id: 'cat_maritimo', name: 'Seguridad Marítima', icon: imgMaritimo, count: 2 },
+  { id: 'cat_especializados', name: 'Sistemas Especializados', icon: imgEspecializados, count: 5 },
+  { id: 'cat_rugged', name: 'Equipos Rugged', icon: imgRugged, count: 12 },
   { id: 'cat_drones', name: 'Drones', icon: imgDrones, count: 9 },
-  { id: 'cat_software', name: 'Software', icon: imgSoftware, count: 11 },
-  { id: 'cat_servicios', name: 'Servicios por Demanda', icon: imgServicios, count: 3 },
+  { id: 'cat_software', name: 'Software', icon: imgSoftware, count: 15 },
+  { id: 'cat_servicios', name: 'Servicios por Demanda', icon: imgServicios, count: 4 },
 ];
 
 const SortableCategoryCard = ({ cat, config, onSelectCategory, userRole, moveCard, toggleVisibility }) => {
