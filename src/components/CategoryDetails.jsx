@@ -14,7 +14,9 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useState } from 'react';
 import './CategoryDetails.css';
+import AddProductForm from './AddProductForm';
 import productsData from '../data/products.json';
 
 const SortableProductCard = ({ product, category, config, onOpenQuote, userRole, moveProduct, toggleVisibility }) => {
@@ -80,6 +82,7 @@ const SortableProductCard = ({ product, category, config, onOpenQuote, userRole,
 };
 
 const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, onUpdateConfig, externalProducts = [] }) => {
+  const [showAddForm, setShowAddForm] = useState(false);
   const pageId = `cat_${category.name.toLowerCase().replace(/\s+/g, '_')}`;
   const config = cmsConfig?.pages?.[pageId] || { order: [], hidden: [] };
   
@@ -95,12 +98,7 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
   const productsWithIds = [...localProducts, ...externalProducts];
 
   const handleAddProduct = () => {
-    const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfCfwJYUe9WZGgONfIZcr0kvE9J7yyn8lIXDW42AT2YFCrjXg/viewform";
-    const params = new URLSearchParams({
-      usp: 'pp_url',
-      'entry.212367061': category.name
-    });
-    window.open(`${baseUrl}?${params.toString()}`, '_blank');
+    setShowAddForm(true);
   };
 
   const sensors = useSensors(
@@ -215,6 +213,13 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
           </SortableContext>
         </DndContext>
       </div>
+
+      {showAddForm && (
+        <AddProductForm 
+          categoryName={category.name} 
+          onClose={() => setShowAddForm(false)} 
+        />
+      )}
     </section>
   );
 };
