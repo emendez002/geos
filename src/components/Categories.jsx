@@ -1,3 +1,19 @@
+import { 
+  DndContext, 
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import './Categories.css';
 
 const categoryData = [
@@ -9,9 +25,67 @@ const categoryData = [
   { id: 'cat_servicios', name: 'Servicios por Demanda', icon: '⏳', count: 3 },
 ];
 
+const SortableCategoryCard = ({ cat, config, onSelectCategory, userRole, moveCard, toggleVisibility }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: cat.id, disabled: !userRole });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 10 : 1,
+    opacity: isDragging ? 0.6 : 1,
+    scale: isDragging ? 1.05 : 1,
+  };
+
+  return (
+    <div 
+      ref={setNodeRef}
+      style={style}
+      className={`category-card glass-panel ${config.hidden.includes(cat.id) ? 'cms-hidden' : ''} ${isDragging ? 'is-dragging' : ''}`}
+    >
+      <div onClick={() => !isDragging && onSelectCategory(cat)}>
+        <div className="cat-icon">{cat.icon}</div>
+        <h3>{cat.name}</h3>
+        <p className="cat-count">{cat.count} items</p>
+        <div className="cat-hover-action">Ver productos &rarr;</div>
+      </div>
+
+      {userRole && (
+        <div className="cms-controls">
+          <div className="drag-handle" {...attributes} {...listeners} title="Arrastrar para reordenar">
+            ⠿
+          </div>
+          <button onClick={() => moveCard(cat.id, -1)} title="Mover arriba">↑</button>
+          <button onClick={() => moveCard(cat.id, 1)} title="Mover abajo">↓</button>
+          <button onClick={() => toggleVisibility(cat.id)} title={config.hidden.includes(cat.id) ? "Mostrar" : "Ocultar"}>
+            {config.hidden.includes(cat.id) ? "👁️‍🗨️" : "👁️"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Categories = ({ onSelectCategory, cmsConfig, userRole, onUpdateConfig }) => {
   const pageId = "index_home";
   const config = cmsConfig?.pages?.[pageId] || { order: [], hidden: [] };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      }
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   // Prioritize config order
   const sortedCategories = [...categoryData].sort((a, b) => {
@@ -26,6 +100,19 @@ const Categories = ({ onSelectCategory, cmsConfig, userRole, onUpdateConfig }) =
   const visibleCategories = sortedCategories.filter(cat => 
     userRole || !config.hidden.includes(cat.id)
   );
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    
+    if (active.id !== over.id) {
+      const currentOrder = config.order.length > 0 ? config.order : sortedCategories.map(c => c.id);
+      const oldIndex = currentOrder.indexOf(active.id);
+      const newIndex = currentOrder.indexOf(over.id);
+      
+      const newOrder = arrayMove(currentOrder, oldIndex, newIndex);
+      onUpdateConfig(pageId, { ...config, order: newOrder });
+    }
+  };
 
   const moveCard = (id, direction) => {
     const currentOrder = config.order.length > 0 ? config.order : sortedCategories.map(c => c.id);
@@ -56,31 +143,30 @@ const Categories = ({ onSelectCategory, cmsConfig, userRole, onUpdateConfig }) =
           <p>Explora nuestra selección de alta precisión tecnológica</p>
         </div>
         
-        <div className="categories-grid">
-          {visibleCategories.map(cat => (
-            <div 
-              key={cat.id} 
-              className={`category-card glass-panel ${config.hidden.includes(cat.id) ? 'cms-hidden' : ''}`}
-            >
-              <div onClick={() => onSelectCategory(cat)}>
-                <div className="cat-icon">{cat.icon}</div>
-                <h3>{cat.name}</h3>
-                <p className="cat-count">{cat.count} items</p>
-                <div className="cat-hover-action">Ver productos &rarr;</div>
-              </div>
-
-              {userRole && (
-                <div className="cms-controls">
-                  <button onClick={() => moveCard(cat.id, -1)} title="Mover arriba">↑</button>
-                  <button onClick={() => moveCard(cat.id, 1)} title="Mover abajo">↓</button>
-                  <button onClick={() => toggleVisibility(cat.id)} title={config.hidden.includes(cat.id) ? "Mostrar" : "Ocultar"}>
-                    {config.hidden.includes(cat.id) ? "👁️‍🗨️" : "👁️"}
-                  </button>
-                </div>
-              )}
+        <DndContext 
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext 
+            items={visibleCategories.map(cat => cat.id)}
+            strategy={rectSortingStrategy}
+          >
+            <div className="categories-grid">
+              {visibleCategories.map(cat => (
+                <SortableCategoryCard 
+                  key={cat.id}
+                  cat={cat}
+                  config={config}
+                  onSelectCategory={onSelectCategory}
+                  userRole={userRole}
+                  moveCard={moveCard}
+                  toggleVisibility={toggleVisibility}
+                />
+              ))}
             </div>
-          ))}
-        </div>
+          </SortableContext>
+        </DndContext>
       </div>
     </section>
   );

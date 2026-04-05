@@ -1,5 +1,77 @@
+import { 
+  DndContext, 
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import './CategoryDetails.css';
 import productsData from '../data/products.json';
+
+const SortableProductCard = ({ product, category, config, onOpenQuote, userRole, moveProduct, toggleVisibility }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: product.id, disabled: !userRole });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 10 : 1,
+    opacity: isDragging ? 0.6 : 1,
+    scale: isDragging ? 1.05 : 1,
+  };
+
+  return (
+    <div 
+      ref={setNodeRef}
+      style={style}
+      className={`product-card glass-panel ${config.hidden.includes(product.id) ? 'cms-hidden' : ''} ${isDragging ? 'is-dragging' : ''}`}
+    >
+      <div className="product-image-placeholder">
+        {product.image ? (
+          <img src={product.image} alt={product.name} />
+        ) : (
+          <span className="placeholder-icon">{category.icon}</span>
+        )}
+      </div>
+      <div className="product-info">
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
+        <div className="product-actions">
+          <span className="product-price">Consultar</span>
+          <button onClick={() => onOpenQuote(product, category)} className="btn-primary-small">Cotizar Proyecto</button>
+        </div>
+      </div>
+
+      {userRole && (
+        <div className="cms-controls">
+          <div className="drag-handle" {...attributes} {...listeners} title="Arrastrar para reordenar">
+            ⠿
+          </div>
+          <button onClick={() => moveProduct(product.id, -1)} title="Mover izquierda/arriba">←</button>
+          <button onClick={() => moveProduct(product.id, 1)} title="Mover derecha/abajo">→</button>
+          <button onClick={() => toggleVisibility(product.id)} title={config.hidden.includes(product.id) ? "Mostrar" : "Ocultar"}>
+            {config.hidden.includes(product.id) ? "👁️‍🗨️" : "👁️"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, onUpdateConfig }) => {
   const pageId = `cat_${category.name.toLowerCase().replace(/\s+/g, '_')}`;
@@ -12,6 +84,17 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
     ...p,
     id: `prod_${p.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}`
   }));
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      }
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   // Prioritize config order
   const sortedProducts = [...productsWithIds].sort((a, b) => {
@@ -26,6 +109,19 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
   const visibleProducts = sortedProducts.filter(p => 
     userRole || !config.hidden.includes(p.id)
   );
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    
+    if (active.id !== over.id) {
+      const currentOrder = config.order.length > 0 ? config.order : sortedProducts.map(p => p.id);
+      const oldIndex = currentOrder.indexOf(active.id);
+      const newIndex = currentOrder.indexOf(over.id);
+      
+      const newOrder = arrayMove(currentOrder, oldIndex, newIndex);
+      onUpdateConfig(pageId, { ...config, order: newOrder });
+    }
+  };
 
   const moveProduct = (id, direction) => {
     const currentOrder = config.order.length > 0 ? config.order : sortedProducts.map(p => p.id);
@@ -63,43 +159,34 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
           </div>
         </div>
 
-        <div className="products-grid">
-          {visibleProducts.map((product) => (
-            <div 
-              key={product.id} 
-              className={`product-card glass-panel ${config.hidden.includes(product.id) ? 'cms-hidden' : ''}`}
-            >
-              <div className="product-image-placeholder">
-                {product.image ? (
-                  <img src={product.image} alt={product.name} />
-                ) : (
-                  <span className="placeholder-icon">{category.icon}</span>
-                )}
-              </div>
-              <div className="product-info">
-                <h3>{product.name}</h3>
-                <p>{product.description}</p>
-                <div className="product-actions">
-                  <span className="product-price">Consultar</span>
-                  <button onClick={() => onOpenQuote(product, category)} className="btn-primary-small">Cotizar Proyecto</button>
-                </div>
-              </div>
-
-              {userRole && (
-                <div className="cms-controls">
-                  <button onClick={() => moveProduct(product.id, -1)} title="Mover izquierda/arriba">←</button>
-                  <button onClick={() => moveProduct(product.id, 1)} title="Mover derecha/abajo">→</button>
-                  <button onClick={() => toggleVisibility(product.id)} title={config.hidden.includes(product.id) ? "Mostrar" : "Ocultar"}>
-                    {config.hidden.includes(product.id) ? "👁️‍🗨️" : "👁️"}
-                  </button>
-                </div>
+        <DndContext 
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext 
+            items={visibleProducts.map(p => p.id)}
+            strategy={rectSortingStrategy}
+          >
+            <div className="products-grid">
+              {visibleProducts.map((product) => (
+                <SortableProductCard 
+                  key={product.id}
+                  product={product}
+                  category={category}
+                  config={config}
+                  onOpenQuote={onOpenQuote}
+                  userRole={userRole}
+                  moveProduct={moveProduct}
+                  toggleVisibility={toggleVisibility}
+                />
+              ))}
+              {visibleProducts.length === 0 && (
+                <p className="no-products">No hay productos disponibles actualmente en esta categoría.</p>
               )}
             </div>
-          ))}
-          {products.length === 0 && (
-            <p className="no-products">No hay productos disponibles actualmente en esta categoría.</p>
-          )}
-        </div>
+          </SortableContext>
+        </DndContext>
       </div>
     </section>
   );
