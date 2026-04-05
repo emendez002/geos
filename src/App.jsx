@@ -8,15 +8,18 @@ import WhatsAppWidget from './components/WhatsAppWidget';
 import QuoteForm from './components/QuoteForm';
 import LoginForm from './components/LoginForm';
 import { fetchCMSConfig, saveCMSConfig } from './utils/cmsConfig';
+import { fetchExternalProducts } from './utils/productService';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showQuote, setShowQuote] = useState(false);
   const [quoteMetadata, setQuoteMetadata] = useState(null);
   const [cmsConfig, setCmsConfig] = useState(null);
+  const [externalProducts, setExternalProducts] = useState({});
   const [userRole, setUserRole] = useState(localStorage.getItem('geos_user_role') || null);
   const [showLogin, setShowLogin] = useState(false);
   const [scrollTarget, setScrollTarget] = useState(null);
+  const [isSyncing, setIsSyncing] = useState(false);
 
   useEffect(() => {
     // Robust scroll after view transition
@@ -42,12 +45,27 @@ function App() {
   }, [selectedCategory, showQuote, scrollTarget]);
 
   useEffect(() => {
-    const loadConfig = async () => {
-      const config = await fetchCMSConfig();
+    const loadData = async () => {
+      const [config, products] = await Promise.all([
+        fetchCMSConfig(),
+        fetchExternalProducts()
+      ]);
       setCmsConfig(config);
+      setExternalProducts(products);
     };
-    loadConfig();
+    loadData();
   }, []);
+
+  const handleRefreshData = async () => {
+    setIsSyncing(true);
+    const [config, products] = await Promise.all([
+      fetchCMSConfig(),
+      fetchExternalProducts()
+    ]);
+    setCmsConfig(config);
+    setExternalProducts(products);
+    setIsSyncing(false);
+  };
 
   useEffect(() => {
     if (userRole) {
@@ -157,6 +175,7 @@ function App() {
             cmsConfig={cmsConfig}
             userRole={userRole}
             onUpdateConfig={handleUpdateConfig}
+            externalProducts={externalProducts[selectedCategory.name] || []}
           />
         )}
       </main>
@@ -170,7 +189,10 @@ function App() {
             <span>{cmsConfig ? "Configuración cargada" : "Cargando..."}</span>
           </div>
           <div className="admin-actions">
-            <button onClick={handleSaveCMS} className="btn-save-cms" disabled={!cmsConfig}>
+            <button onClick={handleRefreshData} className="btn-sync-cms" disabled={isSyncing}>
+              {isSyncing ? "⌛ Sincronizando..." : "🔄 Sincronizar Datos"}
+            </button>
+            <button onClick={handleSaveCMS} className="btn-save-cms" disabled={!cmsConfig || isSyncing}>
               💾 Guardar Cambios en Google
             </button>
             <button onClick={handleLogout} className="btn-logout-small">Cerrar Sesión</button>

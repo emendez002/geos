@@ -58,6 +58,9 @@ const SortableProductCard = ({ product, category, config, onOpenQuote, userRole,
           <span className="product-price">Consultar</span>
           <button onClick={() => onOpenQuote(product, category)} className="btn-primary-small">Cotizar Proyecto</button>
         </div>
+        {product.isExternal && (
+          <div className="product-badge external-badge">Sincronizado</div>
+        )}
       </div>
 
       {userRole && (
@@ -76,17 +79,29 @@ const SortableProductCard = ({ product, category, config, onOpenQuote, userRole,
   );
 };
 
-const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, onUpdateConfig }) => {
+const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, onUpdateConfig, externalProducts = [] }) => {
   const pageId = `cat_${category.name.toLowerCase().replace(/\s+/g, '_')}`;
   const config = cmsConfig?.pages?.[pageId] || { order: [], hidden: [] };
   
   const rawProducts = productsData[category.name] || [];
   
   // Add unique IDs to products for CMS tracking
-  const productsWithIds = rawProducts.map(p => ({
+  const localProducts = rawProducts.map(p => ({
     ...p,
     id: `prod_${p.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}`
   }));
+
+  // Combine local and external products
+  const productsWithIds = [...localProducts, ...externalProducts];
+
+  const handleAddProduct = () => {
+    const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfCfwJYUe9WZGgONfIZcr0kvE9J7yyn8lIXDW42AT2YFCrjXg/viewform";
+    const params = new URLSearchParams({
+      usp: 'pp_url',
+      'entry.212367061': category.name
+    });
+    window.open(`${baseUrl}?${params.toString()}`, '_blank');
+  };
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -162,6 +177,13 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
             <h2 className="text-gradient">{category.name}</h2>
             <p>Explora nuestra gama de productos en esta categoría.</p>
           </div>
+          {userRole && (
+            <div className="admin-header-actions">
+              <button onClick={handleAddProduct} className="btn-add-product">
+                <span className="icon">➕</span> Agregar Producto
+              </button>
+            </div>
+          )}
         </div>
 
         <DndContext 
