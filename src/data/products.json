@@ -46,17 +46,17 @@
   "Ciberseguridad": [
     {
       "name": "WatchGuard EPDR",
-      "image": "https://www.watchguard.com/sites/default/files/endpoint-security-shield.png",
+      "image": "/geos/products/watchguard_epdr.png",
       "description": "Solución integral de Endpoint Protection, Detection and Response con monitoreo MDR 24/7."
     },
     {
       "name": "Soluciones de Respaldo en la Nube",
-      "image": "https://www.watchguard.com/sites/default/files/cloud-backup-icon.png",
+      "image": "/geos/products/cloud_backup.png",
       "description": "Sistemas de respaldo ilimitado para infraestructuras críticas y Microsoft 365 con cifrado avanzado."
     },
     {
       "name": "Detección y Respuesta Gestionada (MDR)",
-      "image": "https://www.watchguard.com/sites/default/files/mdr-icon.png",
+      "image": "/geos/products/mdr_service.png",
       "description": "Servicio de vigilancia proactiva contra amenazas avanzadas y ataques de ransomware."
     }
   ],

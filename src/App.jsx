@@ -97,7 +97,22 @@ function App() {
 
   return (
     <>
-      <Navbar onOpenQuote={() => handleOpenQuote()} onHome={() => { setSelectedCategory(null); setShowQuote(false); }} />
+      <Navbar 
+        onOpenQuote={() => handleOpenQuote()} 
+        onHome={() => { 
+          setSelectedCategory(null); 
+          setShowQuote(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }} 
+        onScrollTo={(id) => {
+          setSelectedCategory(null);
+          setShowQuote(false);
+          setTimeout(() => {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 50);
+        }}
+      />
       <main>
         {showQuote ? (
           <QuoteForm 
@@ -106,18 +121,18 @@ function App() {
           />
         ) : !selectedCategory ? (
           <>
+            <Categories 
+              onSelectCategory={handleSelectCategory} 
+              cmsConfig={cmsConfig} 
+              userRole={userRole}
+              onUpdateConfig={handleUpdateConfig}
+            />
             <Hero 
               onContact={() => handleOpenQuote()} 
               onExplore={() => {
                 const element = document.getElementById('categorias');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
-            />
-            <Categories 
-              onSelectCategory={handleSelectCategory} 
-              cmsConfig={cmsConfig} 
-              userRole={userRole}
-              onUpdateConfig={handleUpdateConfig}
             />
           </>
         ) : (

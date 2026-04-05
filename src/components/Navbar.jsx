@@ -8,8 +8,8 @@ const Navbar = ({ onOpenQuote, onHome }) => {
           <span className="logo-text text-gradient">Geos</span> Marketplace
         </div>
         <ul className="nav-links">
-          <li><a href="#home" onClick={(e) => { e.preventDefault(); onHome(); }}>Inicio</a></li>
-          <li><a href="#categorias" onClick={(e) => { e.preventDefault(); onHome(); }}>Tienda</a></li>
+          <li><a href="#categorias" onClick={(e) => { e.preventDefault(); onScrollTo('categorias'); }}>Tienda</a></li>
+          <li><a href="#home" onClick={(e) => { e.preventDefault(); onScrollTo('home'); }}>Inicio</a></li>
           <li><a href="#quote" onClick={(e) => { e.preventDefault(); onOpenQuote(); }}>Inspiración 3D</a></li>
         </ul>
         <div className="nav-actions">
