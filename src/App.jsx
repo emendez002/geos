@@ -106,7 +106,13 @@ function App() {
           />
         ) : !selectedCategory ? (
           <>
-            <Hero />
+            <Hero 
+              onContact={() => handleOpenQuote()} 
+              onExplore={() => {
+                const element = document.getElementById('categorias');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
             <Categories 
               onSelectCategory={handleSelectCategory} 
               cmsConfig={cmsConfig} 

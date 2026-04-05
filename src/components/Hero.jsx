@@ -1,6 +1,6 @@
 import './Hero.css';
 
-const Hero = () => {
+const Hero = ({ onContact, onExplore }) => {
   return (
     <section id="home" className="hero hero-gradient">
       <div className="container hero-content animate-fade-in">
@@ -13,8 +13,8 @@ const Hero = () => {
           Tu aliado tecnológico en campo y oficina.
         </p>
         <div className="hero-actions delay-200 animate-fade-in">
-          <a href="#categorias" className="btn-primary">Ver Catálogo</a>
-          <a href="#contact" className="btn-secondary glass-panel">Contactar Asesor</a>
+          <button onClick={onExplore} className="btn-primary">Ver Catálogo</button>
+          <button onClick={onContact} className="btn-secondary glass-panel">Contactar Asesor</button>
         </div>
       </div>
       <div className="hero-assets glass-panel delay-300 animate-fade-in">

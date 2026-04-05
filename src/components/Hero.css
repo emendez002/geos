@@ -35,6 +35,10 @@
   border-radius: 50px;
   font-weight: 600;
   display: inline-block;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .btn-primary {
