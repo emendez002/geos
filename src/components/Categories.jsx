@@ -16,13 +16,21 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import './Categories.css';
 
+// Import realistic images
+import imgTopograficos from '../assets/categories/topograficos.png';
+import imgHidrologia from '../assets/categories/hidrologia.png';
+import imgRugged from '../assets/categories/rugged.png';
+import imgDrones from '../assets/categories/drones.png';
+import imgSoftware from '../assets/categories/software.png';
+import imgServicios from '../assets/categories/servicios.png';
+
 const categoryData = [
-  { id: 'cat_topograficos', name: 'Topográficos', icon: '⛰️', count: 34 },
-  { id: 'cat_hidrologia', name: 'Hidrología', icon: '🌊', count: 8 },
-  { id: 'cat_rugged', name: 'Equipos Rugged', icon: '📱', count: 6 },
-  { id: 'cat_drones', name: 'Drones', icon: '🚁', count: 9 },
-  { id: 'cat_software', name: 'Software', icon: '💻', count: 11 },
-  { id: 'cat_servicios', name: 'Servicios por Demanda', icon: '⏳', count: 3 },
+  { id: 'cat_topograficos', name: 'Topográficos', icon: imgTopograficos, count: 34 },
+  { id: 'cat_hidrologia', name: 'Hidrología', icon: imgHidrologia, count: 8 },
+  { id: 'cat_rugged', name: 'Equipos Rugged', icon: imgRugged, count: 6 },
+  { id: 'cat_drones', name: 'Drones', icon: imgDrones, count: 9 },
+  { id: 'cat_software', name: 'Software', icon: imgSoftware, count: 11 },
+  { id: 'cat_servicios', name: 'Servicios por Demanda', icon: imgServicios, count: 3 },
 ];
 
 const SortableCategoryCard = ({ cat, config, onSelectCategory, userRole, moveCard, toggleVisibility }) => {
@@ -50,7 +58,9 @@ const SortableCategoryCard = ({ cat, config, onSelectCategory, userRole, moveCar
       className={`category-card glass-panel ${config.hidden.includes(cat.id) ? 'cms-hidden' : ''} ${isDragging ? 'is-dragging' : ''}`}
     >
       <div onClick={() => !isDragging && onSelectCategory(cat)}>
-        <div className="cat-icon">{cat.icon}</div>
+        <div className="cat-icon">
+          <img src={cat.icon} alt={cat.name} />
+        </div>
         <h3>{cat.name}</h3>
         <p className="cat-count">{cat.count} items</p>
         <div className="cat-hover-action">Ver productos &rarr;</div>

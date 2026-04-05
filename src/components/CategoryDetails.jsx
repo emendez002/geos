@@ -152,7 +152,9 @@ const CategoryDetails = ({ category, onBack, onOpenQuote, cmsConfig, userRole, o
         </button>
         
         <div className="details-header">
-          <div className="details-icon glass-panel">{category.icon}</div>
+          <div className="details-icon glass-panel">
+            <img src={category.icon} alt={category.name} />
+          </div>
           <div>
             <h2 className="text-gradient">{category.name}</h2>
             <p>Explora nuestra gama de productos en esta categoría.</p>
